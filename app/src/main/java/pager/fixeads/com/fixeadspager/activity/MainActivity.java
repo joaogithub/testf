@@ -1,4 +1,4 @@
-package pager.fixeads.com.fixeadspager;
+package pager.fixeads.com.fixeadspager.activity;
 
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -18,6 +18,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.TextView;
+
+import pager.fixeads.com.fixeadspager.R;
+import pager.fixeads.com.fixeadspager.fragments.AdListFragment;
+import pager.fixeads.com.fixeadspager.fragments.MapsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -137,24 +141,27 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            switch(position){
+                case 0:
+                    return AdListFragment.newInstance(position + 1);
+                case 1:
+                    return MapsFragment.newInstance(position + 1);
+            }
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Show 2 total pages.
+            return 2;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return getResources().getString(R.string.list);
                 case 1:
-                    return "SECTION 2";
-                case 2:
-                    return "SECTION 3";
+                    return getResources().getString(R.string.map);
             }
             return null;
         }
