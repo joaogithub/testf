@@ -11,4 +11,11 @@
     <string name="list">List</string>
     <string name="view_details">View Details</string>
 
+    <!-- Empty messages -->
+    <string name="no_ads">No ads to show</string>
+    <string name="empty_list">Nothing to show</string>
+
+    <!-- Error messages -->
+    <string name="error">An error occurred</string>
+
 </resources>

@@ -1,4 +1,4 @@
-package pager.fixeads.com.fixeadspager.fragments;
+package com.fixeads.pager.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

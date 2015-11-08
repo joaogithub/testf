@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lnlError"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
+
+    <TextView
+        android:id="@+id/txtErrorMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/empty_list"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/rltErrorRefresh"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginTop="10dp"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/btnErrorRefresh"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@drawable/yellow_orange"
+            android:contentDescription="@null"
+            android:padding="10dp"
+            android:text="@string/ok"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:scaleType="centerInside"
+            />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

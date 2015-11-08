@@ -1,4 +1,4 @@
-package pager.fixeads.com.fixeadspager.fragments;
+package com.fixeads.pager.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,13 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.fixeads.pager.R;
+
 /**
  * Created by João Amaro Silva on 08-11-2015.
  */
-public class AdListFragment extends Fragment {
+public class MapsFragment  extends Fragment {
 
-    public static AdListFragment newInstance(int sectionNumber) {
-        AdListFragment fragment = new AdListFragment();
+    protected View mView;
+
+    public static MapsFragment newInstance(int sectionNumber) {
+        MapsFragment fragment = new MapsFragment();
         Bundle args = new Bundle();
         //args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
@@ -23,6 +27,9 @@ public class AdListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+
+        mView = inflater.inflate(R.layout.fragment_map, container, false);
+
+        return mView;
     }
 }

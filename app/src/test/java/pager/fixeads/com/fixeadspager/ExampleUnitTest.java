@@ -1,4 +1,4 @@
-package pager.fixeads.com.fixeadspager;
+package pager.fixeads.com.pager;
 
 import org.junit.Test;
 
