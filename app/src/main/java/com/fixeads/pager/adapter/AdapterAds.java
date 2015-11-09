@@ -56,14 +56,14 @@ public class AdapterAds extends RecyclerView.Adapter<AdapterAds.ViewHolder> {
         if(ad.getUrl() != null ){
             Picasso.with(mActivity)
                     .load(ad.getUrl())
-                    .error(R.color.light_grey)
+                    .error(R.drawable.placeholder)
                     .into(viewHolder.cover);
         }
 
         viewHolder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.w(TAG, "ADS: " + ad.getTitle());
+                Log.i(TAG, "ADS: " + ad.getTitle());
                 mActivity.performTransactionDetails("Ad", DetailsFragment.newInstance(ad), "DetailsFragment");
             }
         });

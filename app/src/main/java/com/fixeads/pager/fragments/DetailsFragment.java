@@ -3,14 +3,15 @@ package com.fixeads.pager.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fixeads.pager.R;
 import com.fixeads.pager.model.Ad;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by João Amaro Silva on 08-11-2015.
@@ -19,7 +20,7 @@ public class DetailsFragment  extends Fragment {
 
     private View mView;
     private TextView title, description, price, created;
-    private ViewPager detailsPager;
+    private ImageView image;
 
     private Ad mAd;
 
@@ -37,13 +38,11 @@ public class DetailsFragment  extends Fragment {
 
         mView = inflater.inflate(R.layout.fragment_details, container, false);
 
+        image = (ImageView) mView.findViewById(R.id.adImageView);
         title = (TextView) mView.findViewById(R.id.adTitleTextView);
         description = (TextView) mView.findViewById(R.id.adDescriptionTextView);
         price = (TextView) mView.findViewById(R.id.adPriceTextView);
         created = (TextView) mView.findViewById(R.id.adCreatedTextView);
-
-        detailsPager = (ViewPager) mView.findViewById(R.id.detailsViewPager);
-
 
 
         if(getArguments() != null) {
@@ -60,6 +59,9 @@ public class DetailsFragment  extends Fragment {
 
             if(mAd.getList_label() != null)
                 price.setText(mAd.getList_label());
+
+            if(mAd.getUrl() != null)
+                Picasso.with(getContext()).load(mAd.getUrl()).placeholder(R.drawable.placeholder).into(image);
         }
 
         return mView;

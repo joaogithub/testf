@@ -12,6 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fixeads.pager.R;
+import com.fixeads.pager.model.Ad;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by João Amaro Silva on 09-11-2015.
@@ -34,12 +38,23 @@ public class PagerFragment extends Fragment{
      */
     private ViewPager mViewPager;
 
-    public static PagerFragment newInstance() {
+    private List<Ad> list;
+
+    public static PagerFragment newInstance(ArrayList<Ad> ads) {
 
         Bundle args = new Bundle();
-
+        if(ads!=null) {
+            args.putSerializable("ads", ads);
+        }
         PagerFragment fragment = new PagerFragment();
         fragment.setArguments(args);
+        return fragment;
+    }
+
+
+    public static PagerFragment newInstance() {
+
+        PagerFragment fragment = new PagerFragment();
         return fragment;
     }
 
@@ -84,6 +99,45 @@ public class PagerFragment extends Fragment{
                     return MapsFragment.newInstance(0);
             }
             return com.fixeads.pager.fragments.AdListFragment.newInstance(position + 1);
+        }
+
+        @Override
+        public int getCount() {
+            // Show 2 total pages.
+            return 2;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return getResources().getString(R.string.list);
+                case 1:
+                    return getResources().getString(R.string.map);
+            }
+            return null;
+        }
+    }
+
+    /**
+     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
+     * one of the sections/tabs/pages.
+     */
+    public class DetailsPagerAdapter extends FragmentPagerAdapter {
+
+        public DetailsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            // getItem is called to instantiate the fragment for the given page.
+            // Return a PlaceholderFragment (defined as a static inner class below).
+            if(getArguments().getSerializable("ads")!=null) {
+                return DetailsFragment.newInstance((Ad) getArguments().getSerializable("ads"));
+            }
+
+            return null;
         }
 
         @Override
