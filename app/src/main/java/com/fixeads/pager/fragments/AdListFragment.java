@@ -3,6 +3,7 @@ package com.fixeads.pager.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,9 +13,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.fixeads.pager.R;
+import com.fixeads.pager.activity.MainActivity;
+import com.fixeads.pager.adapter.AdapterAds;
+import com.fixeads.pager.model.Ad;
+import com.fixeads.pager.model.AdResponse;
 import com.fixeads.pager.network.RequestAdapter;
-import com.squareup.okhttp.internal.spdy.ErrorCode;
+import com.fixeads.pager.network.listener.RequestObjectListener;
+import com.fixeads.pager.network.model.ErrorCode;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,10 +30,10 @@ import java.util.List;
 public class AdListFragment extends Fragment {
 
     private static final String TAG = "AdListFragment";
-    protected com.fixeads.pager.activity.MainActivity mActivity;
+    protected FragmentActivity mActivity;
     protected View mView;
     protected RecyclerView mRecyclerView;
-    private List<com.fixeads.pager.model.Ad> list;
+    private ArrayList<Ad> mList;
     private int page = 1;
     private boolean loading = true;
     private int pastVisiblesItems, visibleItemCount, totalItemCount;
@@ -52,13 +59,20 @@ public class AdListFragment extends Fragment {
     }
 
     public void requestList(final int page) {
-        RequestAdapter.getAllAds(page, 20, new com.fixeads.pager.network.listener.RequestListListener<com.fixeads.pager.model.Ad>() {
+        RequestAdapter.getAllAds(page, 20, new RequestObjectListener<AdResponse>() {
             @Override
-            public void onSuccess(List<com.fixeads.pager.model.Ad> list) {
+            public void onSuccess(AdResponse response) {
                 mRecyclerView.setVisibility(View.VISIBLE);
                 mView.findViewById(R.id.txtErrorMessage).setVisibility(View.GONE);
                 mView.findViewById(R.id.rltErrorRefresh).setVisibility(View.GONE);
-                list.addAll(list);
+
+                if(response.getAds()!=null)
+                    mList.addAll(response.getAds());
+
+                AdapterAds adapterAds = new AdapterAds((MainActivity) mActivity, mList);
+
+                mRecyclerView.setAdapter(adapterAds);
+
             }
 
             @Override
@@ -78,6 +92,10 @@ public class AdListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_recyclerview, container, false);
 
+        mActivity = getActivity();
+
+        mList = new ArrayList<Ad>();
+
         mRecyclerView = (RecyclerView) mView.findViewById(R.id.rcvENSupport);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(mActivity);
@@ -89,8 +107,8 @@ public class AdListFragment extends Fragment {
 
                 Log.v(TAG, "Scroll - loading - " + loading);
 
-                if (list.size() % 2 == 0 && list.size() % 20 != 0) {
-                    Log.i(TAG, " ----- LIST.SIZE % 20 = " + (list.size() % 20));
+                if (mList.size() % 2 == 0 && mList.size() % 20 != 0) {
+                    Log.i(TAG, " ----- LIST.SIZE % 20 = " + (mList.size() % 20));
                     return;
                 }
 

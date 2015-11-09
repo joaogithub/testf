@@ -1,6 +1,11 @@
 package com.fixeads.pager.network.interfaces;
 
 
+import com.fixeads.pager.model.Ad;
+import com.fixeads.pager.model.AdResponse;
+import com.fixeads.pager.network.model.CallbackList;
+import com.fixeads.pager.network.model.CallbackObject;
+
 import retrofit.Callback;
 import retrofit.http.GET;
 import retrofit.http.Query;
@@ -11,12 +16,12 @@ import retrofit.http.Query;
 public interface IGeneral {
 
     /******
-     * NEWS REQUESTS
+     * ADS REQUESTS
      ******/
-    @GET("")
-    void getAd(@Query("i") int id, Callback<com.fixeads.pager.model.Ad> cb);
+    @GET("/")
+    void getAd(@Query("i") int id, Callback<Ad> cb);
 
-    @GET("")
-    void getAllAds(@Query("p") int page, @Query("q") int quantity, com.fixeads.pager.network.model.CallbackList<com.fixeads.pager.model.Ad> cb);
+    @GET("/")
+    void getAllAds(CallbackObject<AdResponse> cb);
 
 }

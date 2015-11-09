@@ -2,8 +2,6 @@ package com.fixeads.pager.network.model;
 
 import android.util.Log;
 
-import com.squareup.okhttp.internal.spdy.ErrorCode;
-
 import java.util.List;
 
 import retrofit.Callback;
@@ -26,12 +24,12 @@ public abstract class CallbackList<T> implements Callback<List<T>> {
 
         if (tResponseList == null){
             Log.e(TAG, "tResponseList is null ");
-            onError(ErrorCode.INTERNAL_ERROR, "An error occurred");
+            onError(ErrorCode.AN_ERROR_OCCURRED, ErrorCode.AN_ERROR_OCCURRED.getMessage());
             return;
         }
 
         if (tResponseList == null || (tResponseList!=null && tResponseList.isEmpty())) {
-            onError(ErrorCode.NO_ERROR, "List is empty");
+            onError(ErrorCode.NEWS_NOTFOUND, "List is empty");
         } else {
             onSuccess(tResponseList);
         }
@@ -42,7 +40,7 @@ public abstract class CallbackList<T> implements Callback<List<T>> {
 
         if (error == null){
             Log.e(TAG, "ERROR is null ");
-            onError(ErrorCode.INTERNAL_ERROR, ErrorCode.INTERNAL_ERROR.toString());
+            onError(ErrorCode.AN_ERROR_OCCURRED, ErrorCode.AN_ERROR_OCCURRED.toString());
             return;
         }
 

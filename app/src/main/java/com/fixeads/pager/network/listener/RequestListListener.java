@@ -1,6 +1,6 @@
 package com.fixeads.pager.network.listener;
 
-import com.squareup.okhttp.internal.spdy.ErrorCode;
+import com.fixeads.pager.network.model.ErrorCode;
 
 import java.util.List;
 

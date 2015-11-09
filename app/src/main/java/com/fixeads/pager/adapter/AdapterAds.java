@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fixeads.pager.R;
+import com.fixeads.pager.activity.MainActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class AdapterAds extends RecyclerView.Adapter<AdapterAds.ViewHolder> {
     private com.fixeads.pager.activity.MainActivity mActivity;
     private List<com.fixeads.pager.model.Ad> adList;
 
-    public AdapterAds(com.fixeads.pager.activity.MainActivity mActivity, List<com.fixeads.pager.model.Ad> list) {
+    public AdapterAds(MainActivity mActivity, List<com.fixeads.pager.model.Ad> list) {
         this.mActivity = mActivity;
         this.adList = list;
     }
@@ -56,7 +57,7 @@ public class AdapterAds extends RecyclerView.Adapter<AdapterAds.ViewHolder> {
         viewHolder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.w(TAG, "NEWS: " + ad.getTitle());
+                Log.w(TAG, "ADS: " + ad.getTitle());
                 //mActivity.showDetails("News", DetailsFragment.newInstance(2), "FragmentDetailsNews");
             }
         });
@@ -70,7 +71,7 @@ public class AdapterAds extends RecyclerView.Adapter<AdapterAds.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView cover;
-        public TextView title, description;
+        public TextView title, description, published;
         public View view;
 
         public ViewHolder(View itemView) {

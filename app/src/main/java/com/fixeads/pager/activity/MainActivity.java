@@ -17,6 +17,7 @@ import android.view.View;
 
 import com.fixeads.pager.R;
 import com.fixeads.pager.fragments.AdListFragment;
+import com.fixeads.pager.fragments.MapsFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -107,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return AdListFragment.newInstance(position + 1);
                 case 1:
-                    return com.fixeads.pager.fragments.MapsFragment.newInstance(position + 1);
+                    return MapsFragment.newInstance(position + 1);
             }
             return com.fixeads.pager.fragments.AdListFragment.newInstance(position + 1);
         }

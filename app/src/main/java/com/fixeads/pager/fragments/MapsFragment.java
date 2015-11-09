@@ -8,13 +8,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fixeads.pager.R;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
  * Created by João Amaro Silva on 08-11-2015.
  */
-public class MapsFragment  extends Fragment {
+public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
     protected View mView;
+    MapView gMapView;
 
     public static MapsFragment newInstance(int sectionNumber) {
         MapsFragment fragment = new MapsFragment();
@@ -30,6 +37,18 @@ public class MapsFragment  extends Fragment {
 
         mView = inflater.inflate(R.layout.fragment_map, container, false);
 
+        gMapView = (MapView) mView.findViewById(R.id.map);
+        gMapView.getMapAsync(this);
+
         return mView;
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        // Add a marker in Sydney, Australia, and move the camera.
+        LatLng sydney = new LatLng(-34, 151);
+        googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
     }
 }
