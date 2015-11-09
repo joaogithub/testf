@@ -29,7 +29,7 @@ public abstract class CallbackList<T> implements Callback<List<T>> {
         }
 
         if (tResponseList == null || (tResponseList!=null && tResponseList.isEmpty())) {
-            onError(ErrorCode.NEWS_NOTFOUND, "List is empty");
+            onError(ErrorCode.ADS_NOTFOUND, "List is empty");
         } else {
             onSuccess(tResponseList);
         }

@@ -5,6 +5,6 @@ package com.fixeads.pager.utils;
  */
 public class Constants {
 
-    public static final String API_URL = "https://olx.pt/i2/ads/?json=1&search[category_id]=25";
+    public static final String API_URL = "https://olx.pt/i2/ads";
 
 }

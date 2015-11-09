@@ -73,6 +73,8 @@ public class AdListFragment extends Fragment {
 
                 mRecyclerView.setAdapter(adapterAds);
 
+                mView.findViewById(R.id.prgBar).setVisibility(View.GONE);
+
             }
 
             @Override
@@ -83,6 +85,9 @@ public class AdListFragment extends Fragment {
                 } else {
                     showError(message);
                 }
+
+                mView.findViewById(R.id.prgBar).setVisibility(View.GONE);
+
             }
         });
     }

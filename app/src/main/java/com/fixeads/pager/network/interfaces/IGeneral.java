@@ -3,8 +3,6 @@ package com.fixeads.pager.network.interfaces;
 
 import com.fixeads.pager.model.Ad;
 import com.fixeads.pager.model.AdResponse;
-import com.fixeads.pager.network.model.CallbackList;
-import com.fixeads.pager.network.model.CallbackObject;
 
 import retrofit.Callback;
 import retrofit.http.GET;
@@ -21,7 +19,7 @@ public interface IGeneral {
     @GET("/")
     void getAd(@Query("i") int id, Callback<Ad> cb);
 
-    @GET("/")
-    void getAllAds(CallbackObject<AdResponse> cb);
+    @GET("/?json=1&search[category_id]=25")
+    void getAllAds(Callback<AdResponse> adResponse);
 
 }

@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.fixeads.pager.R;
 import com.fixeads.pager.activity.MainActivity;
+import com.fixeads.pager.fragments.DetailsFragment;
+import com.fixeads.pager.model.Ad;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -25,10 +27,10 @@ import java.util.List;
 public class AdapterAds extends RecyclerView.Adapter<AdapterAds.ViewHolder> {
 
     private static final String TAG = "AdapterAds";
-    private com.fixeads.pager.activity.MainActivity mActivity;
-    private List<com.fixeads.pager.model.Ad> adList;
+    private MainActivity mActivity;
+    private List<Ad> adList;
 
-    public AdapterAds(MainActivity mActivity, List<com.fixeads.pager.model.Ad> list) {
+    public AdapterAds(MainActivity mActivity, List<Ad> list) {
         this.mActivity = mActivity;
         this.adList = list;
     }
@@ -43,9 +45,13 @@ public class AdapterAds extends RecyclerView.Adapter<AdapterAds.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
 
-        final com.fixeads.pager.model.Ad ad = adList.get(position);
+        final Ad ad = adList.get(position);
 
         viewHolder.title.setText(ad.getTitle());
+
+        viewHolder.price.setText(ad.getList_label());
+
+        viewHolder.created.setText(ad.getCreated());
 
         if(ad.getUrl() != null ){
             Picasso.with(mActivity)
@@ -58,7 +64,7 @@ public class AdapterAds extends RecyclerView.Adapter<AdapterAds.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Log.w(TAG, "ADS: " + ad.getTitle());
-                //mActivity.showDetails("News", DetailsFragment.newInstance(2), "FragmentDetailsNews");
+                mActivity.performTransactionDetails("Ad", DetailsFragment.newInstance(ad), "DetailsFragment");
             }
         });
     }
@@ -71,7 +77,7 @@ public class AdapterAds extends RecyclerView.Adapter<AdapterAds.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView cover;
-        public TextView title, description, published;
+        public TextView title, price, created;
         public View view;
 
         public ViewHolder(View itemView) {
@@ -81,7 +87,8 @@ public class AdapterAds extends RecyclerView.Adapter<AdapterAds.ViewHolder> {
 
             cover = (ImageView) itemView.findViewById(R.id.imvAdCover);
             title = (TextView) itemView.findViewById(R.id.txtAdTitle);
-            description = (TextView) itemView.findViewById(R.id.txtSubtitle);
+            created = (TextView) itemView.findViewById(R.id.txtAdCreated);
+            price = (TextView) itemView.findViewById(R.id.txtAdPrice);
         }
 
     }

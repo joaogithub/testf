@@ -1,7 +1,7 @@
 package com.fixeads.pager.network.model;
 
 /**
- * Created by Timwe on 15/10/2015.
+ * Created by João on 09/11/2015.
  */
 public class ResponseBase {
 

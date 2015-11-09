@@ -11,7 +11,9 @@ public class Ad implements Serializable {
     private String title;
     private String description;
     private String url;
+    private String created;
     private int category_id;
+    private String list_label;
     private double map_lon;
     private double map_lat;
 
@@ -72,5 +74,17 @@ public class Ad implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCreated() {
+        return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
+    }
+
+    public String getList_label() {
+        return list_label;
     }
 }

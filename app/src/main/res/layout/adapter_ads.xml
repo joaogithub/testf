@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
+    android:layout_height="90dp"
     tools:ignore="MissingPrefix">
 
     <FrameLayout
@@ -38,7 +38,6 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="TEXTO"
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
@@ -49,31 +48,27 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/txtSubtitle"
+                    android:id="@+id/txtAdPrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:maxLines="2"
-                    android:text="TEXTO"
+                    android:maxLines="1"
                     android:textColor="@color/bottom_grey"
-                    android:textSize="14sp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/txtAdCreated"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/bottom_grey"
+                android:textSize="13sp" />
+
 
         </LinearLayout>
-
-        <ImageButton
-            android:id="@+id/imbOptions"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_vertical"
-            android:background="@null"
-            android:paddingBottom="15dp"
-            android:paddingLeft="15dp"
-            android:paddingTop="15dp"
-            android:scaleType="centerInside"
-             />
 
     </LinearLayout>
 </RelativeLayout>

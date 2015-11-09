@@ -3,7 +3,6 @@ package com.fixeads.pager.network;
 import com.fixeads.pager.model.Ad;
 import com.fixeads.pager.model.AdResponse;
 import com.fixeads.pager.network.listener.RequestObjectListener;
-import com.fixeads.pager.network.model.CallbackObject;
 import com.fixeads.pager.network.model.ErrorCode;
 
 import retrofit.Callback;
@@ -28,15 +27,15 @@ public class RequestAdapter {
     }
 
     private static void getAllAdsRequest(final RequestObjectListener<AdResponse> requestObjectListener) {
-        getIGeneral().getAllAds(new CallbackObject<AdResponse>() {
+        getIGeneral().getAllAds(new Callback<AdResponse>() {
             @Override
-            public void onSuccess(AdResponse response) {
-                requestObjectListener.onSuccess(response);
+            public void success(AdResponse adResponse, Response response) {
+                requestObjectListener.onSuccess(adResponse);
             }
 
             @Override
-            public void onError(ErrorCode errorCode, String message) {
-                requestObjectListener.onError(errorCode, message);
+            public void failure(RetrofitError error) {
+                requestObjectListener.onError(ErrorCode.ADS_NOTFOUND, error.getMessage());
             }
         });
     }
