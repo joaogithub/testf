@@ -1,9 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'fixeads'
+            keyPassword 'fixeads'
+            storeFile file('C:/Users/Bold/Documents/GitHub/testf/app/keystore/release.keystore.jks')
+            storePassword 'fixeads'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
-
     defaultConfig {
         applicationId "com.fixeads.pager"
         minSdkVersion 15
@@ -12,13 +19,14 @@ android {
         versionName "1.0"
     }
     buildTypes {
-        debug{
-            manifestPlaceholders = [ google_map_key:"AIzaSyCGf0Xx8MigT9Pp5zvB5r8BFQ9LjNOs1W8"]
+        debug {
+            manifestPlaceholders = [google_map_key: "AIzaSyCGf0Xx8MigT9Pp5zvB5r8BFQ9LjNOs1W8"]
         }
         release {
             minifyEnabled false
-            manifestPlaceholders = [ google_map_key:"AIzaSyDH8V2dSmuhMbUfw2k7vqbe-DwXhVw40RQ"]
+            manifestPlaceholders = [google_map_key: "AIzaSyDH8V2dSmuhMbUfw2k7vqbe-DwXhVw40RQ"]
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 }
