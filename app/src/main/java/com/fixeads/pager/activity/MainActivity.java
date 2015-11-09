@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        performTransaction(R.id.frameContainer, PagerFragment.newInstance(), "PagerFragment");
+        performTransaction(R.id.frameContainer, PagerFragment.newInstance(), "PagerFragment", false);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -53,14 +53,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void performTransactionDetails(String name, Fragment fragment, String tag) {
         //setTitleToolbarDetails(name);
-        performTransaction(R.id.frameContainer, fragment, tag);
+        performTransaction(R.id.frameContainer, fragment, tag, true);
 
     }
 
-    public void performTransaction(int id, Fragment fragment, String tag) {
+    public void performTransaction(int id, Fragment fragment, String tag, boolean addToStack) {
         try{
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.add(id, fragment, tag).addToBackStack(tag);
+            ft.add(id, fragment, tag);
+            if(addToStack){
+                ft.addToBackStack(tag);
+            }
             ft.commitAllowingStateLoss();
         }catch (IllegalStateException e){
             e.printStackTrace();
