@@ -40,7 +40,11 @@ public class DetailsFragment  extends Fragment {
         title = (TextView) mView.findViewById(R.id.adTitleTextView);
         description = (TextView) mView.findViewById(R.id.adDescriptionTextView);
         price = (TextView) mView.findViewById(R.id.adPriceTextView);
-        created = (TextView) mView.findViewById(R.id.txtAdCreated);
+        created = (TextView) mView.findViewById(R.id.adCreatedTextView);
+
+        detailsPager = (ViewPager) mView.findViewById(R.id.detailsViewPager);
+
+
 
         if(getArguments() != null) {
             mAd = (Ad) getArguments().getSerializable("ad");

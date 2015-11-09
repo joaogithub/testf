@@ -23,7 +23,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 /**
  * Created by João Amaro Silva on 08-11-2015.
  */
-public class MapsFragment extends Fragment implements OnMapReadyCallback {
+public class MapsFragment extends Fragment implements OnMapReadyCallback, GoogleMap.InfoWindowAdapter {
 
     private static final String TAG = "MapsFragment";
     protected View mView;
@@ -64,6 +64,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney").snippet("my snippet"));
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
+        googleMap.setInfoWindowAdapter(this);
+
         googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
@@ -71,5 +73,15 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
+    }
+
+    @Override
+    public View getInfoWindow(Marker marker) {
+        return null;
+    }
+
+    @Override
+    public View getInfoContents(Marker marker) {
+        return null;
     }
 }
