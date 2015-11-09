@@ -79,9 +79,9 @@ public class PagerFragment extends Fragment{
             // Return a PlaceholderFragment (defined as a static inner class below).
             switch(position){
                 case 0:
-                    return AdListFragment.newInstance(position + 1);
+                    return AdListFragment.newInstance(0);
                 case 1:
-                    return MapsFragment.newInstance(position + 1);
+                    return MapsFragment.newInstance(0);
             }
             return com.fixeads.pager.fragments.AdListFragment.newInstance(position + 1);
         }

@@ -18,13 +18,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.fixeads.pager.R;
-import com.fixeads.pager.fragments.AdListFragment;
-import com.fixeads.pager.fragments.MapsFragment;
 import com.fixeads.pager.fragments.PagerFragment;
 
-
 public class MainActivity extends AppCompatActivity {
-
 
 
     @Override

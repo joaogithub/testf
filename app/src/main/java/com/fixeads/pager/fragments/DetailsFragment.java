@@ -45,13 +45,17 @@ public class DetailsFragment  extends Fragment {
         if(getArguments() != null) {
             mAd = (Ad) getArguments().getSerializable("ad");
 
-            description.setText(mAd.getDescription());
+            if(mAd.getDescription() != null)
+                description.setText(mAd.getDescription());
 
-            title.setText(mAd.getTitle());
+            if(mAd.getTitle() != null)
+                title.setText(mAd.getTitle());
 
-            created.setText(mAd.getCreated());
+            if(mAd.getCreated() != null)
+                created.setText(mAd.getCreated());
 
-            price.setText(mAd.getList_label());
+            if(mAd.getList_label() != null)
+                price.setText(mAd.getList_label());
         }
 
         return mView;
