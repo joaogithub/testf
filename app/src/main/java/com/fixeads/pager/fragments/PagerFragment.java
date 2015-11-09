@@ -15,7 +15,6 @@ import com.fixeads.pager.R;
 import com.fixeads.pager.model.Ad;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by João Amaro Silva on 09-11-2015.
@@ -33,12 +32,15 @@ public class PagerFragment extends Fragment{
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
+    private DetailsPagerAdapter mDetailsPagerAdapter;
+
     /**
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    private TabLayout mTabLayout;
 
-    private List<Ad> list;
+    private ArrayList<Ad> adsList = new ArrayList<Ad>();
 
     public static PagerFragment newInstance(ArrayList<Ad> ads) {
 
@@ -68,12 +70,26 @@ public class PagerFragment extends Fragment{
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
 
+        mDetailsPagerAdapter = new DetailsPagerAdapter(getChildFragmentManager());
+
+        mTabLayout = (TabLayout) mView.findViewById(R.id.tabs);
+
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) mView.findViewById(R.id.viewPager);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) mView.findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
+
+        if(getArguments() != null && getArguments().getSerializable("ads") != null ) {
+            adsList = (ArrayList<Ad>) getArguments().getSerializable("ads");
+        }
+
+        if(adsList.isEmpty()) {
+            mViewPager.setAdapter(mSectionsPagerAdapter);
+            mTabLayout.setupWithViewPager(mViewPager);
+        }
+        else{
+            mTabLayout.setVisibility(View.GONE);
+            mViewPager.setAdapter(mDetailsPagerAdapter);
+        }
 
         return mView;
     }
@@ -133,8 +149,8 @@ public class PagerFragment extends Fragment{
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            if(getArguments().getSerializable("ads")!=null) {
-                return DetailsFragment.newInstance((Ad) getArguments().getSerializable("ads"));
+            if(getArguments().getSerializable("ads") != null) {
+                return DetailsFragment.newInstance(((ArrayList<Ad>)getArguments().getSerializable("ads")).get(position));
             }
 
             return null;
@@ -142,19 +158,12 @@ public class PagerFragment extends Fragment{
 
         @Override
         public int getCount() {
-            // Show 2 total pages.
-            return 2;
+            return adsList.size();
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return getResources().getString(R.string.list);
-                case 1:
-                    return getResources().getString(R.string.map);
-            }
-            return null;
+            return adsList.get(position).getTitle();
         }
     }
 

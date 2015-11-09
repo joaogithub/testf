@@ -14,11 +14,11 @@ import android.widget.TextView;
 
 import com.fixeads.pager.R;
 import com.fixeads.pager.activity.MainActivity;
-import com.fixeads.pager.fragments.DetailsFragment;
+import com.fixeads.pager.fragments.PagerFragment;
 import com.fixeads.pager.model.Ad;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
+import java.util.ArrayList;
 
 
 /**
@@ -28,9 +28,9 @@ public class AdapterAds extends RecyclerView.Adapter<AdapterAds.ViewHolder> {
 
     private static final String TAG = "AdapterAds";
     private MainActivity mActivity;
-    private List<Ad> adList;
+    private ArrayList<Ad> adList;
 
-    public AdapterAds(MainActivity mActivity, List<Ad> list) {
+    public AdapterAds(MainActivity mActivity, ArrayList<Ad> list) {
         this.mActivity = mActivity;
         this.adList = list;
     }
@@ -64,7 +64,7 @@ public class AdapterAds extends RecyclerView.Adapter<AdapterAds.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "ADS: " + ad.getTitle());
-                mActivity.performTransactionDetails("Ad", DetailsFragment.newInstance(ad), "DetailsFragment");
+                mActivity.performTransactionDetails("Ad", PagerFragment.newInstance(adList), "DetailsFragment");
             }
         });
     }
