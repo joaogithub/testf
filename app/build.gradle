@@ -17,6 +17,7 @@ android {
         }
         release {
             minifyEnabled false
+            manifestPlaceholders = [ google_map_key:"AIzaSyDH8V2dSmuhMbUfw2k7vqbe-DwXhVw40RQ"]
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
