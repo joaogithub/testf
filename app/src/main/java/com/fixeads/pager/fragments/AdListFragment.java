@@ -56,12 +56,15 @@ public class AdListFragment extends Fragment {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                requestList(1);
+                requestList();
             }
         });
     }
 
-    public void requestList(final int page) {
+    /**
+     * request the ad list
+     */
+    public void requestList() {
 
         mView.findViewById(R.id.prgBar).setVisibility(View.VISIBLE);
 
@@ -114,7 +117,7 @@ public class AdListFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(mActivity);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        requestList(1);
+        requestList();
 
         return mView;
     }

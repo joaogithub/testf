@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     public void performTransaction(int id, Fragment fragment, String tag) {
         try{
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(id, fragment, tag).addToBackStack(tag);
+            ft.add(id, fragment, tag).addToBackStack(tag);
             ft.commitAllowingStateLoss();
         }catch (IllegalStateException e){
             e.printStackTrace();

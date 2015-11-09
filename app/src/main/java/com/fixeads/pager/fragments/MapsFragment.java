@@ -88,7 +88,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
             if(mGoogleMap != null) {
                 mGoogleMap.addMarker(new MarkerOptions().position(adLatLong).title(ad.getTitle()).snippet(ad.getList_label()));
                 mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(adLatLong, 6));
-                Log.i(TAG, ad.getTitle() + " " +adLatLong);
             }
         }
     }
