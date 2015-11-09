@@ -10,13 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fixeads.pager.R;
+import com.fixeads.pager.activity.MainActivity;
 import com.fixeads.pager.model.Ad;
 import com.squareup.picasso.Picasso;
 
 /**
  * Created by João Amaro Silva on 08-11-2015.
  */
-public class DetailsFragment  extends Fragment {
+public class DetailsFragment extends Fragment {
 
     private View mView;
     private TextView title, description, price, created;
@@ -37,13 +38,13 @@ public class DetailsFragment  extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         mView = inflater.inflate(R.layout.fragment_details, container, false);
-
         image = (ImageView) mView.findViewById(R.id.adImageView);
         title = (TextView) mView.findViewById(R.id.adTitleTextView);
         description = (TextView) mView.findViewById(R.id.adDescriptionTextView);
         price = (TextView) mView.findViewById(R.id.adPriceTextView);
         created = (TextView) mView.findViewById(R.id.adCreatedTextView);
 
+        ((MainActivity)getActivity()).setupBackIcon();
 
         if(getArguments() != null) {
             mAd = (Ad) getArguments().getSerializable("ad");

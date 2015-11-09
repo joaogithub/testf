@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,6 @@ import com.fixeads.pager.network.listener.RequestObjectListener;
 import com.fixeads.pager.network.model.ErrorCode;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by João Amaro Silva on 08-11-2015.
@@ -56,10 +54,21 @@ public class AdListFragment extends Fragment {
         TextView textView = (TextView) mView.findViewById(R.id.txtErrorMessage);
         textView.setVisibility(View.VISIBLE);
         textView.setText(message);
+
+        //try to load list again
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestList(1);
+            }
+        });
     }
 
     public void requestList(final int page) {
-        RequestAdapter.getAllAds(page, 20, new RequestObjectListener<AdResponse>() {
+
+        mView.findViewById(R.id.prgBar).setVisibility(View.VISIBLE);
+
+        RequestAdapter.getAllAds(getContext(), new RequestObjectListener<AdResponse>() {
             @Override
             public void onSuccess(AdResponse response) {
                 mRecyclerView.setVisibility(View.VISIBLE);
@@ -105,31 +114,6 @@ public class AdListFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(mActivity);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-
-                Log.v(TAG, "Scroll - loading - " + loading);
-
-                if (mList.size() % 2 == 0 && mList.size() % 20 != 0) {
-                    Log.i(TAG, " ----- LIST.SIZE % 20 = " + (mList.size() % 20));
-                    return;
-                }
-
-                visibleItemCount = mLayoutManager.getChildCount();
-                totalItemCount = mLayoutManager.getItemCount();
-                pastVisiblesItems = mLayoutManager.findFirstVisibleItemPosition();
-
-                if (loading) {
-                    if ((visibleItemCount + pastVisiblesItems + 2) >= totalItemCount) {
-                        loading = false;
-                        requestList(page);
-                        Log.v(TAG, "Last Item Wow!");
-                    }
-                }
-            }
-        });
 
         requestList(1);
 

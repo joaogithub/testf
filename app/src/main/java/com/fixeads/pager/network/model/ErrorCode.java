@@ -6,7 +6,7 @@ package com.fixeads.pager.network.model;
 public enum ErrorCode {
 
     AN_ERROR_OCCURRED(0, "An error has occurred"),
-    ERROR_CONNECTION(1, "Error connection"),
+    ERROR_CONNECTION(1, "Connection error. Please check your connection."),
     MISSING_PARAMS(104, "Missing parameters"),
     ADS_NOTFOUND(109, "Ad not found"),
     INVALID_QUERY(113, "Invalid query type"),

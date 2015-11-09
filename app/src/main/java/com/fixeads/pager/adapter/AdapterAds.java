@@ -43,7 +43,7 @@ public class AdapterAds extends RecyclerView.Adapter<AdapterAds.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
 
         final Ad ad = adList.get(position);
 
@@ -55,7 +55,7 @@ public class AdapterAds extends RecyclerView.Adapter<AdapterAds.ViewHolder> {
 
         if(ad.getUrl() != null ){
             Picasso.with(mActivity)
-                    .load(ad.getUrl())
+                    .load(ad.getUrl()).placeholder(R.drawable.placeholder)
                     .error(R.drawable.placeholder)
                     .into(viewHolder.cover);
         }
@@ -64,7 +64,7 @@ public class AdapterAds extends RecyclerView.Adapter<AdapterAds.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "ADS: " + ad.getTitle());
-                mActivity.performTransactionDetails("Ad", PagerFragment.newInstance(adList), "DetailsFragment");
+                mActivity.performTransactionDetails("Ad", PagerFragment.newInstance(adList, position), "DetailsFragment");
             }
         });
     }

@@ -42,11 +42,12 @@ public class PagerFragment extends Fragment{
 
     private ArrayList<Ad> adsList = new ArrayList<Ad>();
 
-    public static PagerFragment newInstance(ArrayList<Ad> ads) {
+    public static PagerFragment newInstance(ArrayList<Ad> ads, int pos) {
 
         Bundle args = new Bundle();
-        if(ads!=null) {
+        if(ads != null) {
             args.putSerializable("ads", ads);
+            args.putSerializable("pos", pos);
         }
         PagerFragment fragment = new PagerFragment();
         fragment.setArguments(args);
@@ -89,6 +90,7 @@ public class PagerFragment extends Fragment{
         else{
             mTabLayout.setVisibility(View.GONE);
             mViewPager.setAdapter(mDetailsPagerAdapter);
+            mViewPager.setCurrentItem(getArguments().getInt("pos", 0));
         }
 
         return mView;

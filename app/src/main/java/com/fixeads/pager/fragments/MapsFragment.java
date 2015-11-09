@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import com.fixeads.pager.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -63,7 +62,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
         LatLng sydney = new LatLng(-34, 151);
         googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney").snippet("my snippet"));
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-
         googleMap.setInfoWindowAdapter(this);
 
         googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {

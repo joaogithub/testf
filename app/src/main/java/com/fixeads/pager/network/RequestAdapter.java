@@ -1,7 +1,9 @@
 package com.fixeads.pager.network;
 
-import com.fixeads.pager.model.Ad;
+import android.content.Context;
+
 import com.fixeads.pager.model.AdResponse;
+import com.fixeads.pager.network.interfaces.IGeneral;
 import com.fixeads.pager.network.listener.RequestObjectListener;
 import com.fixeads.pager.network.model.ErrorCode;
 
@@ -14,20 +16,16 @@ import retrofit.client.Response;
  */
 public class RequestAdapter {
 
-    public static void getAd(final int id, final com.fixeads.pager.network.listener.RequestObjectListener<Ad> requestObjectListener) {
-        getAdRequest(id, requestObjectListener);
+    public static void getAllAds(Context ctx, final RequestObjectListener<AdResponse> requestObjectListener){
+        getAllAdsRequest(ctx, requestObjectListener);
     }
 
-    public static void getAllAds(final int page, final int quantity, final RequestObjectListener<AdResponse> requestObjectListener){
-        getAllAdsRequest(requestObjectListener);
+    public static IGeneral getIGeneral(Context ctx){
+        return RestAdapter.getGeneralAdapter(ctx).create(com.fixeads.pager.network.interfaces.IGeneral.class);
     }
 
-    public static com.fixeads.pager.network.interfaces.IGeneral getIGeneral(){
-        return com.fixeads.pager.network.RestAdapter.getGeneralAdapter().create(com.fixeads.pager.network.interfaces.IGeneral.class);
-    }
-
-    private static void getAllAdsRequest(final RequestObjectListener<AdResponse> requestObjectListener) {
-        getIGeneral().getAllAds(new Callback<AdResponse>() {
+    private static void getAllAdsRequest(Context ctx, final RequestObjectListener<AdResponse> requestObjectListener) {
+        getIGeneral(ctx).getAllAds(new Callback<AdResponse>() {
             @Override
             public void success(AdResponse adResponse, Response response) {
                 requestObjectListener.onSuccess(adResponse);
@@ -35,23 +33,17 @@ public class RequestAdapter {
 
             @Override
             public void failure(RetrofitError error) {
-                requestObjectListener.onError(ErrorCode.ADS_NOTFOUND, error.getMessage());
+
+                if (error.getResponse() != null && error.getResponse().getStatus() == 403) {
+                    requestObjectListener.onError(ErrorCode.AN_ERROR_OCCURRED, ErrorCode.AN_ERROR_OCCURRED.getMessage());
+                }
+                else if(error.getKind() != null && error.getKind() == RetrofitError.Kind.NETWORK){
+                    requestObjectListener.onError(ErrorCode.ERROR_CONNECTION, ErrorCode.ERROR_CONNECTION.getMessage());
+                }
+                else {
+                    requestObjectListener.onError(ErrorCode.AN_ERROR_OCCURRED, ErrorCode.AN_ERROR_OCCURRED.getMessage());
+                }
             }
-        });
-    }
-
-    private static void getAdRequest(final int id, final RequestObjectListener<Ad> requestObjectListener) {
-        getIGeneral().getAd(id, new Callback<Ad>() {
-            @Override
-            public void success(Ad ad, Response response) {
-
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-
-            }
-
         });
     }
 
