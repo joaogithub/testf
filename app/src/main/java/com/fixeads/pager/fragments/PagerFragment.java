@@ -114,7 +114,7 @@ public class PagerFragment extends Fragment{
                 case 0:
                     return AdListFragment.newInstance(0);
                 case 1:
-                    return MapsFragment.newInstance(0);
+                    return MapsFragment.newInstance(adsList);
             }
             return com.fixeads.pager.fragments.AdListFragment.newInstance(position + 1);
         }

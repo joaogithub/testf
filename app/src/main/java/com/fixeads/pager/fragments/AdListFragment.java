@@ -32,9 +32,6 @@ public class AdListFragment extends Fragment {
     protected View mView;
     protected RecyclerView mRecyclerView;
     private ArrayList<Ad> mList;
-    private int page = 1;
-    private boolean loading = true;
-    private int pastVisiblesItems, visibleItemCount, totalItemCount;
     private LinearLayoutManager mLayoutManager;
 
     public static AdListFragment newInstance(int sectionNumber) {
@@ -75,7 +72,7 @@ public class AdListFragment extends Fragment {
                 mView.findViewById(R.id.txtErrorMessage).setVisibility(View.GONE);
                 mView.findViewById(R.id.rltErrorRefresh).setVisibility(View.GONE);
 
-                if(response.getAds()!=null)
+                if(response.getAds() != null)
                     mList.addAll(response.getAds());
 
                 AdapterAds adapterAds = new AdapterAds((MainActivity) mActivity, mList);
@@ -83,6 +80,8 @@ public class AdListFragment extends Fragment {
                 mRecyclerView.setAdapter(adapterAds);
 
                 mView.findViewById(R.id.prgBar).setVisibility(View.GONE);
+
+                MapsFragment.updateMarkers(mList);
 
             }
 

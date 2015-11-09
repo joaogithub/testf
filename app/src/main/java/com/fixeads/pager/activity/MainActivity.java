@@ -13,10 +13,14 @@ import android.view.View;
 
 import com.fixeads.pager.R;
 import com.fixeads.pager.fragments.PagerFragment;
+import com.fixeads.pager.model.Ad;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
+    private ArrayList<Ad> adsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         performTransaction(R.id.frameContainer, PagerFragment.newInstance(), "PagerFragment");
 
@@ -54,17 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void setupBackIcon(){
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-
-    public void resetUpIcon(){
-        getSupportActionBar().setHomeButtonEnabled(false);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-    }
-
     public void performTransaction(int id, Fragment fragment, String tag) {
         try{
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -81,11 +73,6 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        if(id == android.R.id.home){
-            resetUpIcon();
-            return true;
-        }
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {

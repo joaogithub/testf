@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fixeads.pager.R;
-import com.fixeads.pager.activity.MainActivity;
 import com.fixeads.pager.model.Ad;
 import com.squareup.picasso.Picasso;
 
@@ -43,8 +42,6 @@ public class DetailsFragment extends Fragment {
         description = (TextView) mView.findViewById(R.id.adDescriptionTextView);
         price = (TextView) mView.findViewById(R.id.adPriceTextView);
         created = (TextView) mView.findViewById(R.id.adCreatedTextView);
-
-        ((MainActivity)getActivity()).setupBackIcon();
 
         if(getArguments() != null) {
             mAd = (Ad) getArguments().getSerializable("ad");
