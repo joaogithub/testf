@@ -16,6 +16,9 @@ public class Ad implements Serializable {
     private String list_label;
     private double map_lon;
     private double map_lat;
+    private int map_zoom;
+    private String person;
+    private int is_price_negotiable;
 
     public int getId() {
         return id;
@@ -86,5 +89,29 @@ public class Ad implements Serializable {
 
     public String getList_label() {
         return list_label;
+    }
+
+    public int getMap_zoom() {
+        return map_zoom;
+    }
+
+    public void setMap_zoom(int map_zoom) {
+        this.map_zoom = map_zoom;
+    }
+
+    public String getPerson() {
+        return person;
+    }
+
+    public void setPerson(String person) {
+        this.person = person;
+    }
+
+    public int getIs_price_negotiable() {
+        return is_price_negotiable;
+    }
+
+    public void setIs_price_negotiable(int is_price_negotiable) {
+        this.is_price_negotiable = is_price_negotiable;
     }
 }

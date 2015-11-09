@@ -1,74 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="90dp"
-    tools:ignore="MissingPrefix">
+    android:layout_height="100dp">
 
-    <FrameLayout
+    <RelativeLayout
+        android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/light_grey" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/item_selector"
+        tools:ignore="MissingPrefix">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/imvAdCover"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:scaleType="centerCrop" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/light_grey" />
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:paddingLeft="10dp">
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/txtAdTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:textColor="@android:color/black"
-                android:textSize="18sp" />
+            <ImageView
+                android:id="@+id/imvAdCover"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:scaleType="centerCrop" />
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:orientation="horizontal">
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingLeft="10dp">
 
                 <TextView
-                    android:id="@+id/txtAdPrice"
+                    android:id="@+id/txtAdTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="5dp">
+
+                    <TextView
+                        android:id="@+id/txtAdPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textColor="@color/bottom_grey"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtAdCreated"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:textColor="@color/bottom_grey"
-                    android:textSize="15sp" />
+                    android:textSize="13sp" />
+
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/txtAdCreated"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textColor="@color/bottom_grey"
-                android:textSize="13sp" />
-
-
         </LinearLayout>
-
-    </LinearLayout>
-</RelativeLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

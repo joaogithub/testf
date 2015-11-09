@@ -19,7 +19,7 @@ import com.squareup.picasso.Picasso;
 public class DetailsFragment extends Fragment {
 
     private View mView;
-    private TextView title, description, price, created;
+    private TextView title, description, price, created, negotiable, username;
     private ImageView image;
 
     private Ad mAd;
@@ -41,7 +41,10 @@ public class DetailsFragment extends Fragment {
         title = (TextView) mView.findViewById(R.id.adTitleTextView);
         description = (TextView) mView.findViewById(R.id.adDescriptionTextView);
         price = (TextView) mView.findViewById(R.id.adPriceTextView);
+        username = (TextView) mView.findViewById(R.id.adPersonTextView);
+        negotiable = (TextView) mView.findViewById(R.id.adNegotiableTextView);
         created = (TextView) mView.findViewById(R.id.adCreatedTextView);
+
 
         if(getArguments() != null) {
             mAd = (Ad) getArguments().getSerializable("ad");
@@ -52,11 +55,22 @@ public class DetailsFragment extends Fragment {
             if(mAd.getTitle() != null)
                 title.setText(mAd.getTitle());
 
+            if(mAd.getPerson() != null){
+                username.setText(mAd.getPerson());
+            }
+
             if(mAd.getCreated() != null)
                 created.setText(mAd.getCreated());
 
             if(mAd.getList_label() != null)
                 price.setText(mAd.getList_label());
+
+            if(mAd.getIs_price_negotiable() == 1){
+                negotiable.setVisibility(View.VISIBLE);
+            }
+            else{
+                negotiable.setVisibility(View.GONE);
+            }
 
             if(mAd.getUrl() != null)
                 Picasso.with(getContext()).load(mAd.getUrl()).placeholder(R.drawable.placeholder).into(image);

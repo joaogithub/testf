@@ -68,7 +68,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
             for(Ad ad:mList){
                 LatLng adLatLong = new LatLng(ad.getMap_lat(), ad.getMap_lon());
                 googleMap.addMarker(new MarkerOptions().position(adLatLong).title(ad.getTitle()).snippet(ad.getList_label()));
-                googleMap.moveCamera(CameraUpdateFactory.newLatLng(adLatLong));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(adLatLong, ad.getMap_zoom()));
                 googleMap.setInfoWindowAdapter(this);
             }
         }
@@ -87,7 +87,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
             LatLng adLatLong = new LatLng(ad.getMap_lat(), ad.getMap_lon());
             if(mGoogleMap != null) {
                 mGoogleMap.addMarker(new MarkerOptions().position(adLatLong).title(ad.getTitle()).snippet(ad.getList_label()));
-                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(adLatLong));
+                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(adLatLong, 6));
                 Log.i(TAG, ad.getTitle() + " " +adLatLong);
             }
         }

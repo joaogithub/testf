@@ -9,6 +9,9 @@
     <string name="cancel">Cancel</string>
     <string name="list">List</string>
     <string name="view_details">View Details</string>
+    <string name="negotiable">Negotiable</string>
+    <string name="username">Username</string>
+    <string name="date">Date</string>
 
     <!-- Empty messages -->
     <string name="no_ads">No ads to show</string>
